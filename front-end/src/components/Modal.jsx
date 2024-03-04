@@ -81,6 +81,9 @@ export const Modal = ({ open, onClose }) => {
                                     <Image src={DropDown} width={24} height={24} />
                                 </button>
                             </div>
+                            <div className="font-[400] text-[16px] leading-[24px] text-[#1F2937]">
+                                Payee
+                            </div>
                         </div>
                     </div>
                 </div>
