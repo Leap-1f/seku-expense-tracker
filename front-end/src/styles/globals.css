@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #ffffff;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  font: 400px;
-  font-size: 16px;
-  line-height: 24px;
-  color: #0f172a;
+@layer base {
+  body {
+    @apply text-[#0F172A] text-[16px] leading-4;
+    font-family: "Roboto", "sans-serif";
+  }
 }

@@ -10,7 +10,7 @@ export const Navbar = () => {
       <div className="flex gap-6 justify-center items-center">
         <Image src={NavbarImg} width={40} height={40} />
         <div className="font-[600] text-[16px] text-center text-[#0f172a]">
-          <Link href={"http://localhost:3000/"}>Dashbord</Link>
+          <Link href={"http://localhost:3000/Main"}>Dashbord</Link>
         </div>
         <div className="font-[600] text-[16px] text-center text-[#0f172a]">
           <Link href={"http://localhost:3000/Record"}>Records</Link>
