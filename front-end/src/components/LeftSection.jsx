@@ -1,9 +1,13 @@
+import React, { useState } from "react";
+import Image from "next/image";
 import VectorImg from "@/Public/Vector.svg";
-import Eye from "@/Public/Leading icon.svg";
+import { Modal } from "@/components/Modal";
+import Eye from "@/Public/Leading icon.svg"
+
 import Leading from "@/Public/Leading.svg";
 import Plus from "@/Public/Plus.svg"
 
-import Image from "next/image";
+
 
 const category = [
   "Food & Drinks",
@@ -20,11 +24,14 @@ const category = [
 ];
 
 export const LeftSection = () => {
+
+  const [openModal, setOpenModal] = useState(false)
+
   return (
     <div className="rounded-[24px] w-[282px] py-6 px-[16px] bg-[#F9FAFB] gap-6 flex flex-col">
       <div className="flex flex-col gap-6 font-[600] text-[24px] leading-[32px] text-[#000000]">
         Records
-        <button className="gap-1  w-[250px] h-[32px] p-[8px] rounded-[20px] bg-[#0166ff] flex justify-center items-center text-[#ffffff] font-[400] text-[16px] leading-6">
+        <button onClick={() => setOpenModal(true)} className="gap-1  w-[250px] h-[32px] p-[8px] rounded-[20px] bg-[#0166ff] flex justify-center items-center text-[#ffffff] font-[400] text-[16px] leading-6" >
           <Image src={VectorImg} alt="Record" width={15} height={15} />
           Add
         </button>
@@ -87,7 +94,9 @@ export const LeftSection = () => {
           </div>
         </div>
       </div>
-
+      <Modal open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 };
+
+export default LeftSection;

@@ -27,6 +27,7 @@ export const RightSection = () => {
             <IoMdArrowDropdown />
           </button>
         </div>
+<<<<<<< HEAD
       </div>
       <div className="w-full justify-between flex">
         <div className="ml-[10] flex gap-4">
@@ -34,6 +35,15 @@ export const RightSection = () => {
           <div className="font-[400]  text-[16px] leading-6 text-[#000000]">
             Select all
           </div>
+=======
+        <div className="flex flex-col gap-3 w-full ">
+            <div className="ont-[600] text-[16px] leading-6 text-[#000000] ">
+                Today
+            </div>
+            <div className="">
+
+            </div>
+>>>>>>> 2d538ce (add modal)
         </div>
         <div className="font-[600] text-[16px] leading-6 text-[#94A3B8]">
           -35,500₮
