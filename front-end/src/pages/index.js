@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,6 +57,16 @@ export default function Home() {
         </div>
         <div className="bg-[#0166ff] w-[50%] h-full"></div>
       </div>
+=======
+import { MainContent } from "@/components/MainContent";
+import { Navbar } from "@/components/Navbar";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col relative  items-center w-full h-full">
+      <Navbar />
+      <MainContent />
+>>>>>>> 22c9168 (3-5)
     </div>
   );
 }

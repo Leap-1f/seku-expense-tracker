@@ -18,6 +18,7 @@ export const RightSection = () => {
             <BsChevronCompactRight />
           </div>
         </div>
+<<<<<<< HEAD
         <div className="border-[1px] border-[#F9FAFB] rounded-lg bg-[#D1D5DB] flex p-2">
           <div className="font-[600] text-center text-[16px] leading-6 text-[#1F2937] flex justify-center items-center">
             Newest First
@@ -26,6 +27,16 @@ export const RightSection = () => {
             {" "}
             <IoMdArrowDropdown />
           </button>
+=======
+        <div className="w-full justify-between flex">
+            <div className="ml-[10] flex gap-4">
+                <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] "></div>
+                <div className="font-[400]  text-[16px] leading-6 text-[#000000]">Select all</div>
+            </div>
+            <div className="font-[600] text-[16px] leading-6 text-[#94A3B8]">
+                -35,500₮
+            </div>
+>>>>>>> 22c9168 (3-5)
         </div>
 <<<<<<< HEAD
       </div>
