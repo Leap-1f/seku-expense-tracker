@@ -52,10 +52,10 @@ export default function Home() {
                                 <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">
                                     Already have an account?
                                 </p>
-                                <Link href={"http://localhost:3000/LogIn"}>
-                                    <p className="p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
+                                <Link href={"http://localhost:3000"}>
+                                    <div className="p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
                                         Sign Up
-                                    </p>
+                                    </div>
                                 </Link>
                             </div>
                         </div>

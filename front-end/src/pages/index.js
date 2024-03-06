@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,13 +42,10 @@ export default function Home() {
                 <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">
                   Don't have an account?
                 </p>
-                <Link
-                  href={"http://localhost:3000/SignUp"}
-                  className="flex justify-center items-center"
-                >
-                  <p className="p-sm  w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
+                <Link href="http://localhost:3000/SignUp">
+                  <div className="flex justify-center items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
                     Sign up
-                  </p>
+                  </div>
                 </Link>
               </div>
             </div>
@@ -57,16 +53,6 @@ export default function Home() {
         </div>
         <div className="bg-[#0166ff] w-[50%] h-full"></div>
       </div>
-=======
-import { MainContent } from "@/components/MainContent";
-import { Navbar } from "@/components/Navbar";
-
-export default function Home() {
-  return (
-    <div className="flex flex-col relative  items-center w-full h-full">
-      <Navbar />
-      <MainContent />
->>>>>>> 22c9168 (3-5)
     </div>
   );
 }

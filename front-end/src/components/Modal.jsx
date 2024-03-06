@@ -30,7 +30,7 @@ export const Modal = ({ open, onClose }) => {
                             <div className="flex flex-col gap-[32px]  w-[348px] ">
                                 <div className="flex flex-col gap-[32px] w-full">
                                     <div className="bg-[#D1D5DB] border-[1px] border-[#f3f4f6] rounded-lg gap-2 py-3 px-4 flex">
-                                        <div className="font-[400] text-[16px] leading-[24px] text-[#171717]">Amount</div>
+                                        <div className="font-[400] text-[16px]  leading-[24px] text-[#171717]">Amount</div>
                                         <div className="flex gap-2">
                                             <div className="font-[400] text-[20px] leading-[28px] text-[#9CA3AF]">₮</div>
                                             <div className="font-[400] text-[20px] leading-[28px] text-[#9CA3AF]">000.00</div>
@@ -40,14 +40,16 @@ export const Modal = ({ open, onClose }) => {
                                 <div>
                                     Category
                                 </div>
-                                <div className="border-[1px] border-[#F9FAFB] flex p-3 bg-[#D1D5DB] rounded-lg">
-                                    <div className="w-[292px] font-[400] text-[16px] leading-[24px] text-[#94A3B8]">
-                                        Choose
-                                    </div>
-                                    <button>
-                                        <Image src={DropDown} width={24} height={24} />
-                                    </button>
-                                </div>
+                                <select className="select select-bordered w-full border-[1px] border-[#F9FAFB] flex p-3 bg-[#D1D5DB] rounded-lg ">
+                                    <option disabled selected>Find or choose category </option>
+                                    <option>Home</option>
+                                    <option>Gift</option>
+                                    <option>Food</option>
+                                    <option>Drink</option>
+                                    <option>Taxi</option>
+                                    <option>Shopping</option>
+                                </select>
+
                                 <div className="flex">
                                     <div className="flex  ">
                                         <div className="bg-[#d1d5db] border-[1px] border-[#F9FAFB] p-2 rounded-lg w-[168px] ">

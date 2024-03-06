@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import VectorImg from "@/Public/Vector.svg";
-import { Modal } from "@/components/Modal";
+import { AddCategory } from "./AddCategory";
 import Eye from "@/Public/Leading icon.svg"
 
 import Leading from "@/Public/Leading.svg";
@@ -39,7 +39,7 @@ export const LeftSection = () => {
       <input
         type="text"
         placeholder="Search"
-        className="rounded-lg border-[1px] bg-[#d1d5db] h-[32px] w-[250px] text-[#000000] border-gray-200"
+        className="rounded-lg border-[1px] bg-[#d1d5db] h-[32px] w-[250px] text-[#000000] border-gray-200 py2"
       />
       <div className="flex flex-col gap-4 font-[600] text-[16px] leading-6 text-[#000000]">
         <div>Types</div>
@@ -63,7 +63,7 @@ export const LeftSection = () => {
           <div className="font-[600] text-[16px] justify-center flex items-center leading-6 text-[#000000]">
             Category
           </div>
-          <button className="p-[12px] text-[#1f2937] font-[400] text-[16px] leading-6 opacity-[40%]">
+          <button className="p-[12px] text-[#1f2937] font-[400] text-[16px] leading-6 ">
             Clear
           </button>
         </div>
@@ -78,11 +78,12 @@ export const LeftSection = () => {
             </div>
           ))}
         </div>
-        <div className="flex px-3 gap-2 ">
-          <button>
+        <div className="flex  px-3 gap-2 ">
+          <button onClick={() => setOpenModal(true)} className="flex  px-3 gap-2">
             <Image src={Plus} width={20} height={20} />
+            <div className="font-[400] text-[16px] leading-6 ">Add Category</div>
           </button>
-          <div className="font-[400] text-[16px] leading-6 ">Add Category</div>
+
         </div>
       </div>
       <div className="flex flex-col gap-4">
@@ -94,9 +95,9 @@ export const LeftSection = () => {
           </div>
         </div>
       </div>
-      <Modal open={openModal} onClose={() => setOpenModal(false)} />
+      <AddCategory open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 };
 
-export default LeftSection;
+
