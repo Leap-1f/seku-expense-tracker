@@ -42,7 +42,7 @@ export const Modal = ({ open, onClose }) => {
                                 </div>
                                 <select className="select select-bordered w-full border-[1px] border-[#F9FAFB] flex p-3 bg-[#D1D5DB] rounded-lg ">
                                     <option disabled selected>Find or choose category </option>
-                                    <option>Home</option>
+                                    <option >Home</option>
                                     <option>Gift</option>
                                     <option>Food</option>
                                     <option>Drink</option>
