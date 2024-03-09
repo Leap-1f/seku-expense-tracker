@@ -1,3 +1,4 @@
+// ./config/database.js
 import postgres from "postgres";
 import dotenv from "dotenv";
 
@@ -5,7 +6,7 @@ dotenv.config();
 
 let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-export const sql = postgres({
+const sql = postgres({
   host: PGHOST,
   database: PGDATABASE,
   username: PGUSER,
@@ -16,3 +17,5 @@ export const sql = postgres({
     options: `project=${ENDPOINT_ID}`,
   },
 });
+
+export { sql };
