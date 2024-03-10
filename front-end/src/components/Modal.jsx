@@ -87,9 +87,11 @@ export const Modal = ({ open, onClose }) => {
                 Payee
               </div>
               <div className="border-[1px] border-[#F9FAFB] flex p-4 bg-[#D1D5DB] rounded-lg">
-                <input className="w-[292px] font-[400] text-[16px] leading-[24px] text-[#94A3B8]">
-                  Write here
-                </input>
+                <input
+                  type="text"
+                  className="w-[292px] font-[400] text-[16px] border-none bg-transparent leading-[24px] text-[#94A3B8]"
+                  placeholder="Write here"
+                />
                 <button>
                   <Image src={DropDown} width={24} height={24} />
                 </button>
@@ -99,7 +101,7 @@ export const Modal = ({ open, onClose }) => {
               </div>
               <input
                 type="text "
-                className="w-[348px] h-[200px] rounded-lg "
+                className="w-[348px] h-[200px] rounded-lg pl-4 pb-[100px] border-none"
                 placeholder="Write here"
               />
             </div>
