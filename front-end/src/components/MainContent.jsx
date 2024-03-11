@@ -7,10 +7,13 @@ import Image from "next/image";
 
 export const MainContent = () => {
   return (
-    <div className="flex bg-[#E2E8F0] w-full h-full  flex-col  ">
+    <div className="flex bg-[#E2E8F0] w-full   flex-col  ">
       <div className="flex w-[1200px] mx-auto gap-6 pt-8">
         <div>
-          <Image src={CardImg} />
+          <div className="relative">
+            <Image src={CardImg} />
+            <div className="absolute bg-[#0166ff] w-[150px] h-[50px] top-[130px] left-[33px]"></div>
+          </div>
         </div>
         {/* card 1 */}
         <div className="bg-[#ffffff] rounded-[12px]  w-[384px] h-[208px]  ">

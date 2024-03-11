@@ -1,6 +1,7 @@
 import DropDown from "@/Public/dropdown.svg";
 import Image from "next/image";
 import Cancel from "@/Public/Vector.png";
+import { useState } from "react";
 
 export const Modal = ({ open, onClose }) => {
   if (!open) {
@@ -48,18 +49,29 @@ export const Modal = ({ open, onClose }) => {
                   </div>
                 </div>
                 <div>Category</div>
-                <select className="select select-bordered w-full border-[1px] border-[#F9FAFB] flex p-3 bg-[#D1D5DB] rounded-lg ">
+                <select className="select select-bordered w-full border-[1px] border-[#F9FAFB] flex p-3 bg-[#D1D5DB] rounded-lg">
                   <option disabled selected>
-                    Find or choose category{" "}
+                    Find or choose category
                   </option>
-                  <option>Home</option>
-                  <option>Gift</option>
-                  <option>Food</option>
-                  <option>Drink</option>
-                  <option>Taxi</option>
-                  <option>Shopping</option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🏠 Home
+                  </option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🎁 Gift
+                  </option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🍔 Food
+                  </option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🥤 Drink
+                  </option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🚖 Taxi
+                  </option>
+                  <option className="border-b-[1px] p-4 border-[#ffffff] bg-[transparent]">
+                    🛍️ Shopping
+                  </option>
                 </select>
-
                 <div className="flex">
                   <div className="flex  ">
                     <div className="bg-[#d1d5db] border-[1px] border-[#F9FAFB] p-2 rounded-lg w-[168px] ">
@@ -74,7 +86,7 @@ export const Modal = ({ open, onClose }) => {
                     <Image src={DropDown} width={24} height={24} />
                   </div>
                 </div>
-                <button className="bg-[#0166FF] px-3 py-2.5 rounded-[20px] w-full   text-[#F9FAFB]">
+                <button className="bg-[#0166FF] h-[48px] px-3 py-2.5 rounded-[20px] w-full   text-[#F9FAFB]">
                   Add Record
                 </button>
               </div>
