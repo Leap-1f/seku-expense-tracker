@@ -1,8 +1,33 @@
+import { useState } from "react";
 import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+
+  const handleSignUp = async () => {
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, rePassword }),
+      });
+      if (response.ok) {
+        console.log("Sign up successful!");
+      } else {
+        console.error("Sign up failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Sign up failed:", error);
+    }
+  };
+
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -26,26 +51,37 @@ export default function Home() {
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
               <input
-                type="name"
+                type="text"
                 placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
               />
               <input
                 type="email"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
               />
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
               />
               <input
-                type="re-password"
-                placeholder="RE-password"
+                type="password"
+                placeholder="Re-enter Password"
+                value={rePassword}
+                onChange={(e) => setRePassword(e.target.value)}
                 className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
               />
-              <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
+              <button
+                className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white"
+                onClick={handleSignUp}
+              >
                 Sign Up
               </button>
               <div className="flex justify-center">
@@ -54,7 +90,7 @@ export default function Home() {
                 </p>
                 <Link href={"http://localhost:3000"}>
                   <div className="p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
-                    Sign Up
+                    Sign In
                   </div>
                 </Link>
               </div>
