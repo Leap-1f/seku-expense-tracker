@@ -1,20 +1,20 @@
-// index.js
+// app.js or server.js
+
 import express from "express";
-import { sql } from "./config/database.js";
+import dotenv from "dotenv";
+import signupRouter from "./src/router/users.js";
+
+dotenv.config();
+
 const app = express();
-const port = 3000;
 
-app.get("/category", async (req, res) => {
-  const data = await sql`SELECT *FROM users`;
-  console.log(data);
-  res.send("hello");
-});
-app.put("/users", async (req, res) => {
-  const data = await sql`SELECT *FROM users`;
-  console.log(data);
-  res.send("hello");
-});
+// Middleware to parse JSON bodies
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+// Mount the signup router
+app.use("/api", signupRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
