@@ -42,7 +42,7 @@ export default function Home() {
                 <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">
                   Don't have an account?
                 </p>
-                <Link href="http://localhost:3000/SignUp">
+                <Link href="SignUp">
                   <div className="flex justify-center items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
                     Sign up
                   </div>
