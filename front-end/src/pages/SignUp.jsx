@@ -15,9 +15,6 @@ export default function SignUp() {
     setShowRePassword(!showRePassword);
   };
 
-  const handleSignUp = () => {
-    console.log("Signing up...");
-  };
   const Hidden =
     "data:image/png;base64,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";
   const Show =
@@ -88,10 +85,7 @@ export default function SignUp() {
                   )}
                 </span>
               </div>
-              <button
-                className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white"
-                onClick={handleSignUp}
-              >
+              <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
                 Sign Up
               </button>
               <div className="flex justify-center">
