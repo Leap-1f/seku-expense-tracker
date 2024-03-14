@@ -34,7 +34,9 @@ export const RightSection = () => {
       </div>
       <div className="w-full justify-between flex">
         <div className="ml-[10] flex gap-4 justify-center items-center">
-          <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] opacity-[20%]"></div>
+          <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] flex justify-center items-center">
+            <input type="checkbox" defaultChecked className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
+          </div>
           <div className="w-10 h-10 bg-[#0166ff] rounded-[100px] flex justify-center">
             <Image src={HomeLogo} width={15} height={15} />
           </div>
@@ -53,7 +55,9 @@ export const RightSection = () => {
       </div>
       <div className="w-full justify-between flex">
         <div className="ml-[10] flex gap-4 justify-center items-center">
-          <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] opacity-[20%]"></div>
+          <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] flex justify-center items-center">
+            <input type="checkbox" defaultChecked className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
+          </div>
           <div className="w-10 h-10 bg-[#0166ff] rounded-[100px] flex justify-center">
             <Image src={HomeLogo} width={15} height={15} />
           </div>

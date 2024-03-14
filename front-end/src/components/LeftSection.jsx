@@ -45,15 +45,22 @@ export const LeftSection = () => {
         <div>Types</div>
         <div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
+              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            </div>
             All
           </div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
+              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            </div>
+
             Income
           </div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
+              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            </div>
             Expense
           </div>
         </div>

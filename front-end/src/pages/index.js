@@ -2,7 +2,21 @@ import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useState } from "react";
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
+
 export default function Home() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setShowRePassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleRePasswordVisibility = () => {
+    setShowRePassword(!showRePassword);
+  };
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -30,11 +44,23 @@ export default function Home() {
                 placeholder="Email"
                 className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
               />
-              <input
-                type="email"
-                placeholder="Password"
-                className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
+                />
+                <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
+                  {showPassword ? (
+                    <IoEye width={40} height={40} />
+                  ) : (
+                    <IoMdEyeOff width={40} height={40} />
+                  )}
+                </span>
+              </div>
+
               <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
                 Login
               </button>
