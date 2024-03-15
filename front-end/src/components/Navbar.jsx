@@ -10,7 +10,7 @@ export const Navbar = () => {
   const [openModal, setOpenModal] = useState(false)
   return (
     <>
-      <div class="navbar" className="flex w-[1200px] justify-between py-[16px] bg-[#ffffff] ">
+      <div className="flex w-[1200px] justify-between py-[16px] bg-[#ffffff] ">
         <div className="flex gap-6 justify-center items-center">
           <Image src={NavbarImg} width={40} height={40} />
           <div className="font-[600] text-[16px] text-center text-[#0f172a]">
