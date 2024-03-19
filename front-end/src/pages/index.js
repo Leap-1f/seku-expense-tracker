@@ -70,7 +70,7 @@ export default function Home() {
                   Don't have an account?
                 </p>
                 <Link href="SignUp">
-                  <div className="flex justify-center text-center items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
+                  <div className="flex justify-center  items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
                     Sign up
                   </div>
                 </Link>

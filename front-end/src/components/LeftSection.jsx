@@ -39,27 +39,38 @@ export const LeftSection = () => {
       <input
         type="text"
         placeholder="Search"
-        className="rounded-lg border-[1px] bg-[#d1d5db] h-[32px] w-[250px] text-[#000000] border-gray-200 py2"
+        className="rounded-lg border-[1px] pl-3 bg-[#d1d5db] h-[32px] w-[250px] text-[#000000] border-gray-200 py-2"
       />
       <div className="flex flex-col gap-4 font-[600] text-[16px] leading-6 text-[#000000]">
         <div>Types</div>
         <div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
-              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
+              />
             </div>
             All
           </div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
-              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
+              />
             </div>
-
             Income
           </div>
           <div className="p-[12px] flex items-center gap-2">
-            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center" >
-              <input type="checkbox" defaultChecked className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]" />
+            <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
+              />
             </div>
             Expense
           </div>

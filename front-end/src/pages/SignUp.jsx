@@ -2,6 +2,8 @@ import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+import * as Yup from "yup";
+
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -9,28 +11,6 @@ import { useRouter } from "next/router";
 
 export default function SignUp() {
   const API_URL = "http://localhost:8080";
-
-  const handleSubmit = async () => {
-    try {
-      const res = await fetch(API_URL, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(userData),
-      });
-      const data = await res.json();
-      console.log(data);
-      if (res.ok) {
-        router.push("/");
-      } else {
-        console.log("Registration failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +21,36 @@ export default function SignUp() {
     password: "",
     repassword: "",
   });
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+      .min(7, "Password must be at least 6 characters")
+      .required("Password is required"),
+    repassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Please confirm your password"),
+  });
+  console.log(validationSchema);
+  const handleSubmit = async () => {
+    try {
+      await validationSchema.validate(userData, { abortEarly: false });
+
+      const res = await fetch(API_URL, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(userData),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error.errors);
+    }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -118,7 +128,11 @@ export default function SignUp() {
                   onChange={handleOnChangeInput}
                   type={showRePassword ? "text" : "password"}
                   placeholder="Re-enter Password"
-                  className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
+                  className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]  ${
+                    validationSchema.fields.name && validationSchema.fields.name.errors.length > 0
+                      ? 'border-red-500' // Add red border if there's an error
+                      : ''
+                  }`"
                 />
                 <span
                   onClick={toggleRePasswordVisibility}
@@ -145,7 +159,7 @@ export default function SignUp() {
                   <div className="p-sm w-[77px] text-center h-[32px] gap-1  text-[#0166ff]">
                     <p className="text-center w-full h-full flex justify-center items-center">
                       Sign In
-                    </p>`
+                    </p>
                   </div>
                 </Link>
               </div>
