@@ -5,26 +5,63 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
+  const API_URL = "http://localhost:8080";
+
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch(API_URL, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(userData),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (res.ok) {
+        router.push("/");
+      } else {
+        console.log("Registration failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    repassword: "",
+  });
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   const toggleRePasswordVisibility = () => {
     setShowRePassword(!showRePassword);
   };
 
-
+  const handleOnChangeInput = (event) => {
+    const { value, name } = event.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
 
   return (
     <div className="w-full h-screen">
-      <div className="w-full h-full flex bg-[#ffffff]">
+      <div className="w-full h-full flex bg-[#ffffff] ">
         <div className="w-[50%] h-full flex justify-center items-center">
-          <div className="w-[384px] relative flex flex-col gap-10">
+          <div className="w-[384px] relative flex itr flex-col gap-10">
             <div className="mx-auto">
               <Image
                 src={logo}
@@ -43,17 +80,23 @@ export default function SignUp() {
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
               <input
+                onChange={handleOnChangeInput}
+                name="name"
                 type="text"
                 placeholder="Name"
                 className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
               />
               <input
+                name="email"
+                onChange={handleOnChangeInput}
                 type="email"
                 placeholder="Email"
                 className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
               />
               <div className="relative">
                 <input
+                  name="password"
+                  onChange={handleOnChangeInput}
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
@@ -71,6 +114,8 @@ export default function SignUp() {
               </div>
               <div className="relative">
                 <input
+                  name="repassword"
+                  onChange={handleOnChangeInput}
                   type={showRePassword ? "text" : "password"}
                   placeholder="Re-enter Password"
                   className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
@@ -86,16 +131,21 @@ export default function SignUp() {
                   )}
                 </span>
               </div>
-              <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
+              <button
+                onClick={handleSubmit}
+                className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white"
+              >
                 Sign Up
               </button>
               <div className="flex justify-center">
                 <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">
                   Already have an account?
                 </p>
-                <Link href={"http://localhost:3000"}>
-                  <div className="p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
-                    Sign In
+                <Link href={"/"}>
+                  <div className="p-sm w-[77px] text-center h-[32px] gap-1  text-[#0166ff]">
+                    <p className="text-center w-full h-full flex justify-center items-center">
+                      Sign In
+                    </p>`
                   </div>
                 </Link>
               </div>

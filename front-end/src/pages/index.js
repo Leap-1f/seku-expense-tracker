@@ -52,7 +52,8 @@ export default function Home() {
                 />
                 <span
                   onClick={togglePasswordVisibility}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                >
                   {showPassword ? (
                     <IoEye width={40} height={40} />
                   ) : (
@@ -65,11 +66,11 @@ export default function Home() {
                 Login
               </button>
               <div className="flex justify-center">
-                <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">
+                <p className="font-[400] text-[16px] text-center leading-[24px] text-[#0f172a]">
                   Don't have an account?
                 </p>
                 <Link href="SignUp">
-                  <div className="flex justify-center items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
+                  <div className="flex justify-center text-center items-center p-sm w-[77px] h-[32px] gap-1 text-center text-[#0166ff]">
                     Sign up
                   </div>
                 </Link>
