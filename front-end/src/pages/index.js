@@ -7,6 +7,8 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 
 export default function Home() {
+  const API_URL = "http://localhost:8080";
+
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
 
@@ -17,6 +19,7 @@ export default function Home() {
   const toggleRePasswordVisibility = () => {
     setShowRePassword(!showRePassword);
   };
+
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -52,8 +55,7 @@ export default function Home() {
                 />
                 <span
                   onClick={togglePasswordVisibility}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
-                >
+                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
                   {showPassword ? (
                     <IoEye width={40} height={40} />
                   ) : (
@@ -61,7 +63,6 @@ export default function Home() {
                   )}
                 </span>
               </div>
-
               <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
                 Login
               </button>
