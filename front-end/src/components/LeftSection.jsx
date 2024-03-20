@@ -48,7 +48,6 @@ export const LeftSection = () => {
             <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
               <input
                 type="checkbox"
-                defaultChecked
                 className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
               />
             </div>
@@ -58,7 +57,7 @@ export const LeftSection = () => {
             <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
               <input
                 type="checkbox"
-                defaultChecked
+
                 className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
               />
             </div>
@@ -68,7 +67,7 @@ export const LeftSection = () => {
             <div className="w-4 h-4 border-[1px] rounded-[100px] border-[#000000] flex justify-center items-center">
               <input
                 type="checkbox"
-                defaultChecked
+
                 className="checkbox w-4 h-4 rounded-[100px] bg-[#E2E8F0]"
               />
             </div>
@@ -115,12 +114,12 @@ export const LeftSection = () => {
         <div className="flex gap-4">
           <div className="flex gap-4">
             <input
-              type="number "
+              type="number"
               placeholder="0"
               className="w-[114.5px] h-[48px] rounded-lg border-[1px] border-[#f3f4f6] bg-[#d1d5db] p-4 text-[#0f172a]"
             />
             <input
-              type="number "
+              type="number"
               placeholder="1000"
               className="w-[114.5px] h-[48px] rounded-lg border-[1px] border-[#f3f4f6] bg-[#d1d5db] p-4  text-[#0f172a]"
             />

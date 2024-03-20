@@ -25,7 +25,6 @@ export default function SignUp() {
     setShowRePassword(!showRePassword);
   };
 
-
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff] ">

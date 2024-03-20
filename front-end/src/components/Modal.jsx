@@ -4,15 +4,21 @@ import Cancel from "@/Public/Vector.png";
 import { useState } from "react";
 
 export const Modal = ({ open, onClose }) => {
+
+  const [changeColor, setChangeColor] = useState(false);
+
+  const changeColorButton = () => {
+    setChangeColor(!changeColor);
+  };
+
   if (!open) {
     return null;
   }
 
   return (
     <div className="absolute top-0 left-0 w-full h-full bg-[#000000] bg-opacity-50 flex justify-center items-center z-20">
-      <div className=" w-[792px]  rounded-[12px] bg-[#E2E8F0]">
+      <div className="w-[792px] rounded-[12px] bg-[#E2E8F0]">
         <div className="pb-5">
-
           <div className="w-full py-5 px-6 justify-between flex border-b-[1px] border-[#E2E8F0]">
             <div className="font-[600] text-[20px] leading-[28px] text-[#0F172A]">
               Add Record
@@ -25,10 +31,18 @@ export const Modal = ({ open, onClose }) => {
             <div className="flex w-[50%] flex-col  ">
               <div className="py-2 px-6 gap-5 w-[48px] mb-3">
                 <div className="flex bg-[#f3f4f6] w-[348px] gap-1 rounded-[100px] ">
-                  <button className="w-[172px] h-[48px] bg-[#0166ff] px-3 py-1 text-[#f9fafb] font-[400] text-[16px] leading-[24px] rounded-[20px] ">
+                  <button
+                    onClick={changeColorButton}
+                    className={`w-[172px] h-[48px] ${changeColor ? "bg-[#0166FF] text-[#F9FAFB]" : ""
+                      } px-3 py-1 text-[#1F2937] font-[400] text-[16px] leading-[24px] rounded-[20px] `}
+                  >
                     Expense
                   </button>
-                  <button className="w-[172px] h-[48px] bg-[#16A34A] px-3 py-1 text-[#f9fafb] font-[400] text-[16px] leading-[24px] rounded-[20px] ">
+                  <button
+                    onClick={changeColorButton}
+                    className={`w-[172px] h-[48px] ${changeColor ? "bg-[#16A34A] text-[#F9FAFB]" : ""
+                      } px-3 py-1 text-[#1F2937] font-[400] text-[16px] leading-[24px] rounded-[20px] `}
+                  >
                     Income
                   </button>
                 </div>
@@ -36,7 +50,7 @@ export const Modal = ({ open, onClose }) => {
               <div className="w-[396px] flex justify-center items-center ">
                 <div className="flex flex-col gap-[32px]  w-[348px] ">
                   <div className="flex flex-col gap-[32px] w-full">
-                    <div className="bg-[#D1D5DB] border-[1px]  border-[#f3f4f6] rounded-lg gap-2 py-3 px-4 flex">
+                    <div className="bg-[#D1D5DB] border-[1px] border-[#f3f4f6] rounded-lg gap-2 py-3 px-4 flex">
                       <div className="font-[400] text-[16px]   leading-[24px] text-[#171717]">
                         Amount
                       </div>

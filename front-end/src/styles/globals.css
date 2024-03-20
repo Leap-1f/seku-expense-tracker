@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply text-[#0F172A] text-base leading-4; /* Adjust the text size as needed */
+    @apply text-[#0F172A] text-base leading-4;
   }
 }
 .navbar {

@@ -27,15 +27,30 @@ export const RightSection = () => {
           </button>
         </div>
       </div>
+      <div className="w-full justify-between flex bg-[#ffffff] py-3 px-6  rounded-xl">
+        <div className="ml-[10] flex gap-4 justify-center items-center">
+          <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] flex justify-center items-center">
+            <input type="checkbox" className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
+          </div>
+
+          <div className="font-[400]  text-[16px] leading-6 text-[#000000]">
+            Select All
+          </div>
+        </div>
+        <div className="font-[600] text-[16px] leading-6 flex justify-center items-center text-[#94A3B8]">
+          -5000₮
+        </div>
+      </div>
       <div className="flex flex-col gap-3 w-full">
         <div className="font-[600] text-[16px] leading-6 text-[#000000]">
           Today
         </div>
       </div>
-      <div className="w-full justify-between flex">
+
+      <div className="w-full justify-between flex bg-[#ffffff] py-3 px-4  rounded-xl">
         <div className="ml-[10] flex gap-4 justify-center items-center">
           <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] flex justify-center items-center">
-            <input type="checkbox" defaultChecked className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
+            <input type="checkbox" className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
           </div>
           <div className="w-10 h-10 bg-[#0166ff] rounded-[100px] flex justify-center">
             <Image src={HomeLogo} width={15} height={15} />
@@ -53,10 +68,10 @@ export const RightSection = () => {
           Yesterday
         </div>
       </div>
-      <div className="w-full justify-between flex">
+      <div className="w-full justify-between flex bg-[#ffffff] py-3 px-4  rounded-xl">
         <div className="ml-[10] flex gap-4 justify-center items-center">
           <div className="w-6 h-6 border-[1px] border-[#1F2937] rounded-[4px] flex justify-center items-center">
-            <input type="checkbox" defaultChecked className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
+            <input type="checkbox" className="checkbox w-6 h-6 rounded-[4px] bg-[#E2E8F0]" />
           </div>
           <div className="w-10 h-10 bg-[#0166ff] rounded-[100px] flex justify-center">
             <Image src={HomeLogo} width={15} height={15} />

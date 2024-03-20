@@ -2,22 +2,23 @@ import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
 
+import * as Yup from "yup";
+
+import { useRouter } from "next/router";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { data } from "autoprefixer";
 
 export default function Home() {
-  const API_URL = "http://localhost:8080";
+  const API_URL = "http://localhost:8080/login";
+  const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showRePassword, setShowRePassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
-
-  const toggleRePasswordVisibility = () => {
-    setShowRePassword(!showRePassword);
   };
 
   return (
@@ -42,30 +43,77 @@ export default function Home() {
               </p>
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
-              />
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
-                />
-                <span
-                  onClick={togglePasswordVisibility}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
-                  {showPassword ? (
-                    <IoEye width={40} height={40} />
-                  ) : (
-                    <IoMdEyeOff width={40} height={40} />
-                  )}
-                </span>
-              </div>
-              <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
-                Login
-              </button>
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                validationSchema={Yup.object().shape({
+                  email: Yup.string()
+                    .email("Invalid email")
+                    .required("Email is required"),
+                  password: Yup.string()
+                    .min(7, "Password must be at least 6 characters")
+                    .required("Password is required"),
+                })}
+                onSubmit={async (values, { setSubmitting }) => {
+                  try {
+                    const res = await fetch(API_URL, {
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                      method: "POST",
+                      body: JSON.stringify(values),
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    router.push("/Dashboard");
+                  } catch (error) {
+                    console.error("Submission error:", error);
+                  }
+
+                  setSubmitting(false);
+                }}>
+                <Form className="w-full flex flex-col gap-4">
+                  <Field
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500"
+                  />
+                  <div className="relative">
+                    <Field
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="text-red-500"
+                    />
+                    <span
+                      onClick={togglePasswordVisibility}
+                      className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
+                      {showPassword ? (
+                        <IoEye width={40} height={40} />
+                      ) : (
+                        <IoMdEyeOff width={40} height={40} />
+                      )}
+                    </span>
+                  </div>
+                  <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
+                    Login
+                  </button>
+                </Form>
+              </Formik>
               <div className="flex justify-center">
                 <p className="font-[400] text-[16px] text-center leading-[24px] text-[#0f172a]">
                   Don't have an account?

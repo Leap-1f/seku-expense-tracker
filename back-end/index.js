@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import fs from "fs";
+import { log } from "console";
+import { loadavg } from "os";
 
 const app = express();
 app.use(cors());
@@ -19,6 +21,10 @@ app.post("/", (request, response) => {
   users.push(newUser);
   fs.writeFileSync(DATABASE_URL, JSON.stringify(users));
   response.send(newUser);
+});
+
+app.get("/login", (request, response) => {
+  response.send(users);
 });
 
 app.listen(PORT, () => {
