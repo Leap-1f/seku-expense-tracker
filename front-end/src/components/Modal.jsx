@@ -5,10 +5,15 @@ import { useState } from "react";
 
 export const Modal = ({ open, onClose }) => {
 
-  const [changeColor, setChangeColor] = useState(false);
-
-  const changeColorButton = () => {
-    setChangeColor(!changeColor);
+  const [expenseColor, setExpenseColor] = useState(true);
+  const handleExpenseButtonClick = () => {
+    setExpenseColor(true);
+    setIncomeColor(false);
+  };
+  const [incomeColor, setIncomeColor] = useState(false);
+  const handleIncomeButtonClick = () => {
+    setIncomeColor(true);
+    setExpenseColor(false);
   };
 
   if (!open) {
@@ -27,20 +32,20 @@ export const Modal = ({ open, onClose }) => {
               <Image src={Cancel} width={15.76} height={15.76} />
             </button>
           </div>
-          <div className="flex w-full ">
-            <div className="flex w-[50%] flex-col  ">
+          <div className="flex w-full">
+            <div className="flex w-[50%] flex-col">
               <div className="py-2 px-6 gap-5 w-[48px] mb-3">
-                <div className="flex bg-[#f3f4f6] w-[348px] gap-1 rounded-[100px] ">
+                <div className="flex bg-[#f3f4f6] w-[348px] gap-1 rounded-[100px]">
                   <button
-                    onClick={changeColorButton}
-                    className={`w-[172px] h-[48px] ${changeColor ? "bg-[#0166FF] text-[#F9FAFB]" : ""
+                    onClick={handleExpenseButtonClick}
+                    className={`w-[172px] h-[48px] ${expenseColor ? "bg-[#0166FF] text-[#F9FAFB]" : ""
                       } px-3 py-1 text-[#1F2937] font-[400] text-[16px] leading-[24px] rounded-[20px] `}
                   >
                     Expense
                   </button>
                   <button
-                    onClick={changeColorButton}
-                    className={`w-[172px] h-[48px] ${changeColor ? "bg-[#16A34A] text-[#F9FAFB]" : ""
+                    onClick={handleIncomeButtonClick}
+                    className={`w-[172px] h-[48px] ${incomeColor ? "bg-[#16A34A] text-[#F9FAFB]" : ""
                       } px-3 py-1 text-[#1F2937] font-[400] text-[16px] leading-[24px] rounded-[20px] `}
                   >
                     Income
@@ -102,7 +107,7 @@ export const Modal = ({ open, onClose }) => {
                       <Image src={DropDown} width={24} height={24} />
                     </div>
                   </div>
-                  <button className="bg-[#0166FF] h-[48px] px-3 py-2.5 rounded-[20px] w-full   text-[#F9FAFB]">
+                  <button className={`bg-[#0166FF] h-[48px] px-3 py-2.5 rounded-[20px] w-full  text-[#F9FAFB] ${incomeColor ? "bg-[#16A34A] text-[#F9FAFB]" : "bg-[#0166FF] text-[#F9FAFB]"}`}>
                     Add Record
                   </button>
                 </div>
