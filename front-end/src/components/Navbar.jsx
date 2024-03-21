@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { Modal } from "./Modal";
 
 export const Navbar = () => {
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
   return (
     <>
       <div className="flex w-[1200px] justify-between py-[16px] bg-[#ffffff] ">
@@ -21,7 +21,10 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="flex gap-6 justify-center items-center">
-          <button onClick={() => setOpenModal(true)} className="w=[99px] gap-1 h-[32px] p-[8px] rounded-[20px] bg-[#0166ff] flex justify-center items-center text-[#ffffff] ">
+          <button
+            onClick={() => setOpenModal(true)}
+            className="w=[99px] gap-1 h-[32px] p-[8px] rounded-[20px] bg-[#0166ff] flex justify-center items-center text-[#ffffff] "
+          >
             <Image src={VectorImg} width={15} height={15} />
             Record
           </button>
@@ -29,8 +32,6 @@ export const Navbar = () => {
         </div>
       </div>
       <Modal open={openModal} onClose={() => setOpenModal(false)} />
-
     </>
-
   );
 };
