@@ -9,7 +9,6 @@ import { IoMdEyeOff } from "react-icons/io";
 import { useRouter } from "next/router";
 
 export default function SignUp() {
-
   const API_URL = "http://localhost:8080";
 
   const router = useRouter();
@@ -31,7 +30,12 @@ export default function SignUp() {
         <div className="w-[50%] h-full flex justify-center items-center">
           <div className="w-[384px] relative flex itr flex-col gap-10">
             <div className="mx-auto">
-              <Image src={logo} width={92.34} height={34.31} className="mx-auto" />
+              <Image
+                src={logo}
+                width={92.34}
+                height={34.31}
+                className="mx-auto"
+              />
             </div>
             <div className="mx-auto w-full h-[64px] gap-2 flex flex-col justify-center">
               <p className="text-center font-[600] text-[24px] leading-[32px] text-[#0f172a]">
@@ -65,7 +69,7 @@ export default function SignUp() {
               })}
               onSubmit={async (values, { setSubmitting }) => {
                 try {
-                  const res = await fetch(API_URL, {
+                  const res = await fetch(`${API_URL}/users`, {
                     headers: {
                       Accept: "application/json",
                       "Content-Type": "application/json",
@@ -74,7 +78,7 @@ export default function SignUp() {
                     body: JSON.stringify(values),
                   });
                   const data = await res.json();
-                  console.log(data);
+
                   router.push("/");
                 } catch (error) {
                   console.error("Submission error:", error);
