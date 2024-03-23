@@ -34,16 +34,15 @@ const PORT = 8080;
 //   response.send(newUser);
 // });
 app.post("/users", async (request, response) => {
-  const newUser = request.body;
-  console.log(newUser);
+  const {name, email, password} = request.body;
   try {
     // Insert data into the database
     const usersData = await sql`
-      INSERT INTO users (name, password, email, currency_type)
-      VALUES (${newUser.name}, ${newUser.password}, ${newUser.email}, ${newUser.currency_type})
+      INSERT INTO users (name, password, email)
+      VALUES (${name}, ${password}, ${email}) RETURNING *
     `;
     console.log("User inserted:", usersData);
-    response.send(newUser);
+    response.send({success: true, statusCode: 201});
   } catch (error) {
     console.error("Error inserting user:", error);
     response.status(500).send("Internal Server Error");

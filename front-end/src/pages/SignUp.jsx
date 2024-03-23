@@ -1,7 +1,7 @@
 import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import {  useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
@@ -9,7 +9,7 @@ import { IoMdEyeOff } from "react-icons/io";
 import { useRouter } from "next/router";
 
 export default function SignUp() {
-  const API_URL = "http://localhost:8080";
+// const API_URL = "http://localhost:8080";
 
   const router = useRouter();
 
@@ -23,7 +23,51 @@ export default function SignUp() {
   const toggleRePasswordVisibility = () => {
     setShowRePassword(!showRePassword);
   };
-
+  const formikSignUp = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      repassword: "",
+    },
+    validationSchema:Yup.object().shape({
+      name: Yup.string().required("Name is required"),
+      email: Yup.string()
+        .email("Invalid email")
+        .required("Email is required"),
+      password: Yup.string()
+        .min(7, "Password must be at least 6 characters")
+        .required("Password is required"),
+      repassword: Yup.string()
+        .oneOf(
+          [Yup.ref("password"), null],
+          "Your password is different"
+        )
+        .required("Please confirm your password"),
+    }),
+    onSubmit:async (values) => {
+       
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/users`, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(values)
+        });
+        const data = await res.json();
+        console.log(data);
+        if(data.success){
+          router.push("/SignUpProcess1");
+        }
+        else(console.log("amjiltgui"))
+        
+      } catch (error) {
+        console.error("Submission error:", error);
+      }
+    }
+  })
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff] ">
@@ -45,79 +89,54 @@ export default function SignUp() {
                 Sign up below to create your Wallet account
               </p>
             </div>
-            <Formik
-              initialValues={{
-                name: "",
-                email: "",
-                password: "",
-                repassword: "",
-              }}
-              validationSchema={Yup.object().shape({
-                name: Yup.string().required("Name is required"),
-                email: Yup.string()
-                  .email("Invalid email")
-                  .required("Email is required"),
-                password: Yup.string()
-                  .min(7, "Password must be at least 6 characters")
-                  .required("Password is required"),
-                repassword: Yup.string()
-                  .oneOf(
-                    [Yup.ref("password"), null],
-                    "Your password is different"
-                  )
-                  .required("Please confirm your password"),
-              })}
-              onSubmit={async (values, { setSubmitting }) => {
-                try {
-                  const res = await fetch(`${API_URL}/users`, {
-                    headers: {
-                      Accept: "application/json",
-                      "Content-Type": "application/json",
-                    },
-                    method: "POST",
-                    body: JSON.stringify(values),
-                  });
-                  const data = await res.json();
-
-                  router.push("/");
-                } catch (error) {
-                  console.error("Submission error:", error);
-                }
-                setSubmitting(false);
-              }}
-            >
-              {({ isSubmitting }) => (
-                <Form className="w-full flex flex-col gap-4">
-                  <Field
+          
+            <FormikProvider>
+              
+                <form className="w-full flex flex-col gap-4" onSubmit={formikSignUp.handleSubmit  }>
+                  <input
                     name="name"
                     type="text"
                     placeholder="Name"
                     className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
+                    onChange={formikSignUp.handleChange}
+                    value={formikSignUp.values.name}
                   />
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="name"
                     component="div"
                     className="text-red-500"
-                  />
-                  <Field
+                  /> */}
+                  {formikSignUp.errors.name && formikSignUp.touched.name ?(
+                    <div className="text-red-500 text-sm">{formikSignUp.errors.name}</div>
+                  ): null}
+                  <input
                     name="email"
                     type="email"
                     placeholder="Email"
                     className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
+                    onChange={formikSignUp.handleChange}
+                    value={formikSignUp.values.email}
                   />
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="email"
                     component="div"
                     className="text-red-500"
-                  />
-
+                  /> */}
+{formikSignUp.errors.email && formikSignUp.touched.email ?(
+                    <div className="text-red-500 text-sm">{formikSignUp.errors.email}</div>
+                  ): null}
                   <div className="relative w-full ">
-                    <Field
+                    <input
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
+                      onChange={formikSignUp.handleChange}
+                      value={formikSignUp.values.password}
                       className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
                     />
+                    {formikSignUp.errors.password && formikSignUp.touched.password ?(
+                    <div className="text-red-500 text-sm">{formikSignUp.errors.password}</div>
+                  ): null}
                     <span
                       onClick={togglePasswordVisibility}
                       className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
@@ -125,42 +144,48 @@ export default function SignUp() {
                       {showPassword ? <IoMdEyeOff /> : <IoEye />}
                     </span>
                   </div>
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="password"
                     component="div"
                     className="text-red-500"
-                  />
+                  /> */}
 
                   <div className="relative">
-                    <Field
+                    <input
                       name="repassword"
                       type={showRePassword ? "text" : "password"}
                       placeholder="Re-enter Password"
+                      onChange={formikSignUp.handleChange}
+                      value={formikSignUp.values.repassword}
                       className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
                     />
+                    
                     <span
                       onClick={toggleRePasswordVisibility}
                       className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
                     >
                       {showRePassword ? <IoMdEyeOff /> : <IoEye />}
                     </span>
+                    {formikSignUp.errors.repassword && formikSignUp.touched.repassword ?(
+                    <div className="text-red-500 text-sm">{formikSignUp.errors.repassword}</div>
+                  ): null}
                   </div>
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="repassword"
                     component="div"
                     className="text-red-500"
-                  />
+                  /> */}
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white"
+        
+                    className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white active:scale-95"
                   >
-                    {isSubmitting ? "Signing Up..." : "Sign Up"}
+                   sign up
                   </button>
-                </Form>
-              )}
-            </Formik>
+                </form>
+             
+            </FormikProvider>
 
             <div className="flex justify-center">
               <p className="font-[400] text-[16px] leading-[24px] text-[#0f172a]">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import * as Yup from "yup";
 
 import { useRouter } from "next/router";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik, FormikProvider  } from "formik";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -20,7 +20,20 @@ export default function Home() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+const formikSignIN = useFormik({
+  initialValues:{
+    email: "",
+    password: "",
+  },        validationSchema:Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(7, "Password must be at least 6 characters")
+      .required("Password is required"),
+  })
+})
+// here 
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -43,19 +56,8 @@ export default function Home() {
               </p>
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
-              <Formik
-                initialValues={{
-                  email: "",
-                  password: "",
-                }}
-                validationSchema={Yup.object().shape({
-                  email: Yup.string()
-                    .email("Invalid email")
-                    .required("Email is required"),
-                  password: Yup.string()
-                    .min(7, "Password must be at least 6 characters")
-                    .required("Password is required"),
-                })}
+              <FormikProvider
+      
                 onSubmit={async (values, { setSubmitting }) => {
                   try {
                     const res = await fetch(API_URL, {
@@ -75,7 +77,7 @@ export default function Home() {
 
                   setSubmitting(false);
                 }}>
-                <Form className="w-full flex flex-col gap-4">
+                <form className="w-full flex flex-col gap-4">
                   <Field
                     name="email"
                     type="email"
@@ -87,6 +89,11 @@ export default function Home() {
                     component="div"
                     className="text-red-500"
                   />
+
+
+
+
+
                   <div className="relative">
                     <Field
                       name="password"
@@ -112,8 +119,8 @@ export default function Home() {
                   <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
                     Login
                   </button>
-                </Form>
-              </Formik>
+                </form>
+              </FormikProvider>
               <div className="flex justify-center">
                 <p className="font-[400] text-[16px] text-center leading-[24px] text-[#0f172a]">
                   Don't have an account?
