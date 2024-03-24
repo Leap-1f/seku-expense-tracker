@@ -8,15 +8,13 @@ export const SignUpConfirm = () => {
         <div className="flex flex-col gap-3 ">
           <div className="flex flex-col gap-8 items-center">
             <div className="flex gap-4 flex-col items-center font-[600] text-[24px] leading-8 text-[#0172a]">
-              <Image src={CurrencyImg} width={48} height={48} />
+              <Image src={CurrencyImg} width={48} height={48} alt="CurrencyImg" />
               Select base currency
             </div>
             <select className="select bg-[#D1D5DB]  rounded-lg border-[1px] border-[#f3f4f6]  h-[64px] w-[384px] ">
-              <option disabled selected>
-                Select currency
-              </option>
-              <option>MNT</option>
-              <option>USD</option>
+      
+              <option defaultValue value="MNT">MNT</option>
+              <option value="USD">USD</option>
             </select>
           </div>
           <p className="w-[384px]  font-[400] text-[12px] leading-4 text-[#475569]">

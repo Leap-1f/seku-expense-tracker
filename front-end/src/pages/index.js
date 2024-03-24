@@ -9,10 +9,10 @@ import { useFormik, FormikProvider } from "formik";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
-import { data } from "autoprefixer";
+
 
 export default function Home() {
-  const API_URL = "http://localhost:8080/login";
+
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +20,7 @@ export default function Home() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const formikSignIN = useFormik({
+  const formikSignIn = useFormik({
     initialValues: {
       email: "",
       password: "",
@@ -31,8 +31,28 @@ export default function Home() {
         .min(7, "Password must be at least 6 characters")
         .required("Password is required"),
     }),
+    onSubmit:async(values)=>{
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/users`, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+          body: JSON.stringify(values),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          router.push("/Dashboard");
+        
+        } else console.log("failed login ");
+      } catch (error) {
+        console.error("cant fetch , error login:", error);
+      }
+    }
   });
-  // here
+
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -56,47 +76,40 @@ export default function Home() {
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
               <FormikProvider
-                onSubmit={async (values, { setSubmitting }) => {
-                  try {
-                    const res = await fetch(API_URL, {
-                      headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                      },
-                      method: "POST",
-                      body: JSON.stringify(values),
-                    });
-                    const data = await res.json();
-                    console.log(data);
-                    router.push("/Dashboard");
-                  } catch (error) {
-                    console.error("Submission error:", error);
-                  }
-
-                  setSubmitting(false);
-                }}
+                value={formikSignIn}
               >
-                <form className="w-full flex flex-col gap-4">
+                <form className="w-full flex flex-col gap-4"
+                   onSubmit={formikSignIn.handleSubmit}>
                   <input
+                     value={formikSignIn.values.email}
+                     onChange={formikSignIn.handleChange}
                     name="email"
                     type="email"
                     placeholder="Email"
                     className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
                   />
-                  <div name="email" component="div" className="text-red-500" />
+                       {formikSignIn.errors.email && formikSignIn.touched.email ? (
+                  <div className="text-red-500 text-sm">
+                    {formikSignIn.errors.email}
+                  </div>
+                ) : null}
+             
 
                   <div className="relative">
                     <input
+                      value={formikSignIn.values.password}
+                      onChange={formikSignIn.handleChange}
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
                     />
-                    <div
-                      name="password"
-                      component="div"
-                      className="text-red-500"
-                    />
+                      {formikSignIn.errors.password && formikSignIn.touched.password ? (
+                  <div className="text-red-500 text-sm">
+                    {formikSignIn.errors.password}
+                  </div>
+                ) : null}
+             
                     <span
                       onClick={togglePasswordVisibility}
                       className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
@@ -108,7 +121,7 @@ export default function Home() {
                       )}
                     </span>
                   </div>
-                  <button className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
+                  <button type="submit" className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white">
                     Login
                   </button>
                 </form>

@@ -11,7 +11,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const NewUser = async (req, res) => {
+export const newUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
     // Insert data into the database

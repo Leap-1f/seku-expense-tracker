@@ -25,6 +25,7 @@ export default function Home() {
                                 width={92.34}
                                 height={34.31}
                                 className="mx-auto"
+                                alt="logo"
                             />
                         </div>
                         <div className={`gap-4 relative mx-auto flex flex-col justify-center `}>

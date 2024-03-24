@@ -61,6 +61,7 @@ export default function SignUp() {
       }
     },
   });
+
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff] ">
@@ -83,7 +84,8 @@ export default function SignUp() {
               </p>
             </div>
 
-            <FormikProvider>
+            <FormikProvider
+            value={formikSignUp}>
               <form
                 className="w-full flex flex-col gap-4"
                 onSubmit={formikSignUp.handleSubmit}
@@ -96,11 +98,7 @@ export default function SignUp() {
                   onChange={formikSignUp.handleChange}
                   value={formikSignUp.values.name}
                 />
-                {/* <ErrorMessage
-                    name="name"
-                    component="div"
-                    className="text-red-500"
-                  /> */}
+            
                 {formikSignUp.errors.name && formikSignUp.touched.name ? (
                   <div className="text-red-500 text-sm">
                     {formikSignUp.errors.name}
@@ -114,11 +112,7 @@ export default function SignUp() {
                   onChange={formikSignUp.handleChange}
                   value={formikSignUp.values.email}
                 />
-                {/* <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="text-red-500"
-                  /> */}
+              
                 {formikSignUp.errors.email && formikSignUp.touched.email ? (
                   <div className="text-red-500 text-sm">
                     {formikSignUp.errors.email}
@@ -146,11 +140,7 @@ export default function SignUp() {
                     {showPassword ? <IoMdEyeOff /> : <IoEye />}
                   </span>
                 </div>
-                {/* <ErrorMessage
-                    name="password"
-                    component="div"
-                    className="text-red-500"
-                  /> */}
+             
 
                 <div className="relative">
                   <input
@@ -175,11 +165,13 @@ export default function SignUp() {
                     </div>
                   ) : null}
                 </div>
-                {/* <ErrorMessage
-                    name="repassword"
-                    component="div"
-                    className="text-red-500"
-                  /> */}
+              
+
+
+
+
+
+
 
                 <button
                   type="submit"
