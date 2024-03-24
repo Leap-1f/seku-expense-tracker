@@ -13,7 +13,7 @@ export const SignUpConfirm = () => {
             </div>
             <select className="select bg-[#D1D5DB]  rounded-lg border-[1px] border-[#f3f4f6]  h-[64px] w-[384px] ">
               <option disabled selected>
-                MNT-Mongolian Tugrik
+                Select currency
               </option>
               <option>MNT</option>
               <option>USD</option>

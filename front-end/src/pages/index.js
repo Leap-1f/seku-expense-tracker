@@ -78,13 +78,13 @@ const formikSignIN = useFormik({
                   setSubmitting(false);
                 }}>
                 <form className="w-full flex flex-col gap-4">
-                  <Field
+                  <input
                     name="email"
                     type="email"
                     placeholder="Email"
                     className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
                   />
-                  <ErrorMessage
+                  <div
                     name="email"
                     component="div"
                     className="text-red-500"
@@ -95,13 +95,13 @@ const formikSignIN = useFormik({
 
 
                   <div className="relative">
-                    <Field
+                    <input
                       name="password"
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       className="w-full  h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db] "
                     />
-                    <ErrorMessage
+                    <div
                       name="password"
                       component="div"
                       className="text-red-500"
