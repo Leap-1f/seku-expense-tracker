@@ -5,7 +5,7 @@ import Link from "next/link";
 import * as Yup from "yup";
 
 import { useRouter } from "next/router";
-import { useFormik, FormikProvider  } from "formik";
+import { useFormik, FormikProvider } from "formik";
 import { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -20,20 +20,19 @@ export default function Home() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-const formikSignIN = useFormik({
-  initialValues:{
-    email: "",
-    password: "",
-  },        validationSchema:Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Email is required"),
-    password: Yup.string()
-      .min(7, "Password must be at least 6 characters")
-      .required("Password is required"),
-  })
-})
-// here 
+  const formikSignIN = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object().shape({
+      email: Yup.string().email("Invalid email").required("Email is required"),
+      password: Yup.string()
+        .min(7, "Password must be at least 6 characters")
+        .required("Password is required"),
+    }),
+  });
+  // here
   return (
     <div className="w-full h-screen">
       <div className="w-full h-full flex bg-[#ffffff]">
@@ -57,7 +56,6 @@ const formikSignIN = useFormik({
             </div>
             <div className="w-full h-[176px] gap-4 flex flex-col">
               <FormikProvider
-      
                 onSubmit={async (values, { setSubmitting }) => {
                   try {
                     const res = await fetch(API_URL, {
@@ -76,7 +74,8 @@ const formikSignIN = useFormik({
                   }
 
                   setSubmitting(false);
-                }}>
+                }}
+              >
                 <form className="w-full flex flex-col gap-4">
                   <input
                     name="email"
@@ -84,15 +83,7 @@ const formikSignIN = useFormik({
                     placeholder="Email"
                     className="w-full h-[48px] rounded-lg border-[1px] p-[16px] bg-[#f3f4f6] border-[#d1d5db]"
                   />
-                  <div
-                    name="email"
-                    component="div"
-                    className="text-red-500"
-                  />
-
-
-
-
+                  <div name="email" component="div" className="text-red-500" />
 
                   <div className="relative">
                     <input
@@ -108,7 +99,8 @@ const formikSignIN = useFormik({
                     />
                     <span
                       onClick={togglePasswordVisibility}
-                      className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer">
+                      className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                    >
                       {showPassword ? (
                         <IoEye width={40} height={40} />
                       ) : (
