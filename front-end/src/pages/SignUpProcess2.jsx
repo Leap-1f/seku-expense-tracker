@@ -25,8 +25,8 @@ export default function Home() {
               </div>
               <input
                 type="text"
-                placeholder="Email"
-                className="input rounded-lg bg-[#D1D5DB]  border-[1px] border-[#f3f4f6]  h-[64px] w-[384px]"
+                placeholder="How much"
+                className="input rounded-lg bg-[#D1D5DB]  border-[1px] border-[#f3f4f6] text-[#000000]  h-[64px] w-[384px]"
               />
             </div>
             <p className="w-[384px]  font-[400] text-[12px] leading-4 text-[#475569]">

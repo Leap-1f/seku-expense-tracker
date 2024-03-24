@@ -1,18 +1,21 @@
 import logo from "@/Public/Frame 3.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+
+import { useFormik, FormikProvider } from "formik";
+import { useContext, useState, useEffect } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { useRouter } from "next/router";
+import { Context } from "@/components/utils/Context";
 
 export default function SignUp() {
+  const { signUpUserInfo, setSignUpUserInfo } = useContext(Context);
   const router = useRouter();
-
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [warningMessage, setWarningMessage] = useState("")
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -48,14 +51,14 @@ export default function SignUp() {
           method: "POST",
           body: JSON.stringify(values),
         });
-        const data = await res.json();
+        const response = await res.json();
 
-        if (data.success) {
+        if (response.success) {
           router.push("/Loading");
           setTimeout(() => {
             router.push("/SignUpProcess1");
           }, 3000);
-        } else console.log("unsucces");
+        } else  if (response.message) {setWarningMessage(response.message)};
       } catch (error) {
         console.error("Submission error:", error);
       }
@@ -84,8 +87,7 @@ export default function SignUp() {
               </p>
             </div>
 
-            <FormikProvider
-            value={formikSignUp}>
+            <FormikProvider value={formikSignUp}>
               <form
                 className="w-full flex flex-col gap-4"
                 onSubmit={formikSignUp.handleSubmit}
@@ -98,7 +100,7 @@ export default function SignUp() {
                   onChange={formikSignUp.handleChange}
                   value={formikSignUp.values.name}
                 />
-            
+
                 {formikSignUp.errors.name && formikSignUp.touched.name ? (
                   <div className="text-red-500 text-sm">
                     {formikSignUp.errors.name}
@@ -112,7 +114,7 @@ export default function SignUp() {
                   onChange={formikSignUp.handleChange}
                   value={formikSignUp.values.email}
                 />
-              
+
                 {formikSignUp.errors.email && formikSignUp.touched.email ? (
                   <div className="text-red-500 text-sm">
                     {formikSignUp.errors.email}
@@ -140,7 +142,6 @@ export default function SignUp() {
                     {showPassword ? <IoMdEyeOff /> : <IoEye />}
                   </span>
                 </div>
-             
 
                 <div className="relative">
                   <input
@@ -165,14 +166,7 @@ export default function SignUp() {
                     </div>
                   ) : null}
                 </div>
-              
-
-
-
-
-
-
-
+{ warningMessage && <div>{warningMessage}</div>}
                 <button
                   type="submit"
                   className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white active:scale-95"

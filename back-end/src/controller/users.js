@@ -26,3 +26,20 @@ export const newUser = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+export const selectUserByEmail = async (req, res) => {
+  const { email } = req.body;
+  try {
+    // Insert data into the database
+    const user = await sql`
+      SELECT * FROM users WHERE email=${email}`;
+    if (user.length == 0) {
+      res.send({ success: true, statusCode: 201 });
+    } else {
+      res.send({ message: "registered email", statusCode: 201 });
+    }
+    // console.log(message);
+  } catch (error) {
+    console.error("Error inserting user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
