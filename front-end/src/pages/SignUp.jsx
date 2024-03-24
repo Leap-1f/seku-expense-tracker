@@ -54,8 +54,8 @@ export default function SignUp() {
           router.push("/Loading");
           setTimeout(() => {
             router.push("/SignUpProcess1");
-          }, 2000);
-        } else console.log("amjiltgui");
+          }, 3000);
+        } else console.log("unsucces");
       } catch (error) {
         console.error("Submission error:", error);
       }
