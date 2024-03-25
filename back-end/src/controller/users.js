@@ -35,7 +35,7 @@ export const selectUserByEmail = async (req, res) => {
     if (user.length == 0) {
       res.send({ success: true, statusCode: 201 });
     } else {
-      res.send({ message: "registered email", statusCode: 201 });
+      res.send({ message: "already registered email", statusCode: 401 });
     }
     // console.log(message);
   } catch (error) {

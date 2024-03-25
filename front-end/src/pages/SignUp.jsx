@@ -15,7 +15,7 @@ export default function SignUp() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
-  const [warningMessage, setWarningMessage] = useState("")
+  const [warningMessage, setWarningMessage] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -58,7 +58,9 @@ export default function SignUp() {
           setTimeout(() => {
             router.push("/SignUpProcess1");
           }, 3000);
-        } else  if (response.message) {setWarningMessage(response.message)};
+        } else if (response.message) {
+          setWarningMessage(response.message);
+        }
       } catch (error) {
         console.error("Submission error:", error);
       }
@@ -166,7 +168,9 @@ export default function SignUp() {
                     </div>
                   ) : null}
                 </div>
-{ warningMessage && <div>{warningMessage}</div>}
+                {warningMessage && (
+                  <div className="text-red-500 text-sm">{warningMessage}</div>
+                )}
                 <button
                   type="submit"
                   className="bg-[#0166ff] h-[48px] rounded-[20px] p-[15px] text-white active:scale-95"
